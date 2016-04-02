@@ -58,3 +58,14 @@ docker exec caravel caravel db upgrade
 # Create default roles and permissions
 docker exec caravel caravel init
 ```
+
+
+## Additional Configuration
+
+A custom configuration can be accomplished through mounting a Caravel config to `/caravel_config.py` in the container or by setting `ENV` variables:
+* `ROW_LIMIT`
+* `WEBSERVER_THREADS`
+* `SECRET_KEY`
+* `SQLALCHEMY_DATABASE_URI`
+* `CSRF_ENABLED`
+* `DEBUG`
