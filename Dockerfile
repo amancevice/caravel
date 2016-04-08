@@ -5,14 +5,15 @@ RUN echo as of 2016-04-03 && \
     apt-get update && \
     apt-get install -y build-essential libssl-dev libffi-dev python-dev python-pip
 
-# Caravel
-RUN pip install caravel==0.8.4
-
 # MySQL
 RUN apt-get install -y libmysqlclient-dev && pip install mysql-python==1.2.5
 
 # PostgreSQL
 RUN apt-get build-dep -y psycopg2 && pip install psycopg2==2.6.1
+
+# Caravel
+RUN pip install pandas==0.18.0
+RUN pip install caravel==0.8.6
 
 EXPOSE 8088
 
