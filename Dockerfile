@@ -1,18 +1,23 @@
 FROM ubuntu:14.04
 MAINTAINER amancevice@cargometrics.com
 
+# Setup
 RUN echo as of 2016-04-03 && \
     apt-get update && \
     apt-get install -y build-essential libssl-dev libffi-dev python-dev python-pip
 
+WORKDIR /caravel
+
+# Pandas
+RUN pip install pandas==0.18.0
+
 # MySQL
-RUN apt-get install -y libmysqlclient-dev && pip install mysql-python==1.2.5
+RUN apt-get install -y libmysqlclient-dev && pip install mysqlclient==1.3.7
 
 # PostgreSQL
 RUN apt-get build-dep -y psycopg2 && pip install psycopg2==2.6.1
 
 # Caravel
-RUN pip install pandas==0.18.0
 RUN pip install caravel==0.8.6
 
 EXPOSE 8088
@@ -24,9 +29,8 @@ ENV ROW_LIMIT=5000 \
     SQLALCHEMY_DATABASE_URI=sqlite:////caravel/caravel.db \
     CSRF_ENABLED=1 \
     DEBUG=1 \
-    PYTHONPATH=/caravel_config.py:$PYTHONPATH
+    PYTHONPATH=/caravel/caravel_config.py:$PYTHONPATH
 
-COPY caravel_config.py /caravel_config.py
-COPY caravel.db /caravel/caravel.db
+COPY caravel /caravel
 
 CMD ["caravel", "runserver"]

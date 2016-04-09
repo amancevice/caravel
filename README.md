@@ -62,7 +62,7 @@ docker exec caravel caravel init
 
 ## Additional Configuration
 
-A custom configuration can be accomplished through mounting a Caravel config to `/caravel_config.py` in the container or by setting `ENV` variables:
+A custom configuration can be accomplished through mounting a Caravel config to `/caravel/caravel_config.py` in the container or by setting `ENV` variables:
 * `ROW_LIMIT`
 * `WEBSERVER_THREADS`
 * `SECRET_KEY`
