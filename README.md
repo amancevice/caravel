@@ -1,6 +1,6 @@
 # Caravel
 
-Docker image for AirBnB's Caravel.
+Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 
 ## Database Setup
