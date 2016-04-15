@@ -18,7 +18,7 @@ RUN apt-get install -y libmysqlclient-dev && pip install mysqlclient==1.3.7
 RUN apt-get build-dep -y psycopg2 && pip install psycopg2==2.6.1
 
 # Caravel
-RUN pip install caravel==0.8.7
+RUN pip install caravel==0.8.8
 
 EXPOSE 8088
 
