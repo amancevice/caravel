@@ -19,7 +19,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', '\2\1thisismyscretkey\1\2\e\y\y\h')
 SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI', 'sqlite:////caravel/caravel.db')
 
 # Flask-WTF flag for CSRF
-CSRF_ENABLED = os.getenv('CSRF_ENABLED', '1') in ('True', 'true', '1', 1)
+CSRF_ENABLED = os.getenv('CSRF_ENABLED', '1') in ('True', 'true', '1')
 
 # Whether to run the web server in debug mode or not
-DEBUG = os.getenv('DEBUG', '1') in ('True', 'true', '1', 1)
+DEBUG = os.getenv('DEBUG', '1') in ('True', 'true', '1')
