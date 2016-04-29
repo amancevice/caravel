@@ -10,14 +10,14 @@ Determine where you will store Caravel's database; choose `SQLite`, `MySQL`, or 
 
 #### SQLite
 
-If Caravel's database is created using SQLite the db file should be mounted from the host machine. In this example we will store a SQLite DB on our host machine in `~/caravel/caravel.db` and mount the directory to `/caravel` in the container.
+If Caravel's database is created using SQLite the db file should be mounted from the host machine. In this example we will store a SQLite DB on our host machine in `~/caravel/caravel.db` and mount the directory to `/home/caravel` in the container.
 
 ```bash
 docker run --detach --name caravel \
     --env SECRET_KEY="mySUPERsecretKEY" \
-    --env SQLALCHEMY_DATABASE_URI="sqlite:////caravel/caravel.db" \
+    --env SQLALCHEMY_DATABASE_URI="sqlite:////home/caravel/caravel.db" \
     --publish 8088:8088 \
-    --volume ~/caravel/caravel.db:/caravel/caravel.db \
+    --volume ~/caravel/caravel.db:/home/caravel/caravel.db \
     amancevice/caravel
 ```
 
@@ -62,7 +62,7 @@ docker exec caravel caravel init
 
 ## Additional Configuration
 
-A custom configuration can be accomplished through mounting a Caravel config to `/caravel/caravel_config.py` in the container or by setting `ENV` variables:
+A custom configuration can be accomplished through mounting a Caravel config to `~caravel/caravel_config.py` in the container or by setting `ENV` variables:
 * `ROW_LIMIT`
 * `WEBSERVER_THREADS`
 * `SECRET_KEY`
