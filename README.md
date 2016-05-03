@@ -69,3 +69,14 @@ A custom configuration can be accomplished through mounting a Caravel config to 
 * `SQLALCHEMY_DATABASE_URI`
 * `CSRF_ENABLED`
 * `DEBUG`
+
+any other environment variable prefixed with `CARAVEL_` will also be passed to the caravel configuration (without the `CARAVEL_` prefix). See the [caravel configuration file](https://github.com/airbnb/caravel/blob/master/caravel/config.py) for a list of available configuration keys. For example:
+
+```bash
+docker run --detach --name caravel \
+    --env CARAVEL_LOG_LEVEL="INFO" \
+    --publish 8088:8088 \
+    amancevice/caravel
+```
+
+will set the [`LOG_LEVEL`](https://github.com/airbnb/caravel/blob/master/caravel/config.py) variable in the caravel configuration.
