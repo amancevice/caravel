@@ -23,3 +23,8 @@ CSRF_ENABLED = os.getenv('CSRF_ENABLED', '1') in ('True', 'true', '1')
 
 # Whether to run the web server in debug mode or not
 DEBUG = os.getenv('DEBUG', '1') in ('True', 'true', '1')
+
+# Import all the env variables prefixed with 'CARAVEL_'
+config_keys = [c for c in os.environ if c.startswith('CARAVEL_')]
+for key in config_keys:
+    globals()[key[8:]] = os.environ[key]
