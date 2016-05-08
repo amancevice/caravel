@@ -3,6 +3,11 @@
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 
+## Versions
+
+This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.8.9` will fetch the image of this repository running caravel v0.8.9. As it is an automated build, commits to the master branch of this repository trigger a re-build of the `latest` tag, while tagging master triggers a versioned build. It is possible that the `latest` tag includes new deployment-specific features but will usually be in sync with the latest semantic version. Use either method to deploy caravel, being aware of the caveats with `latest`.
+
+
 ## Database Setup
 
 Determine where you will store Caravel's database; choose `SQLite`, `MySQL`, or `PostgreSQL`. Use the `ENV` variable `SQLALCHEMY_DATABASE_URI` to point caravel to the correct database. Be sure to set a `SECRET_KEY` when creating the container.
@@ -60,6 +65,25 @@ docker exec caravel caravel init
 ```
 
 
+## Upgrading
+
+Upgrading to a newer version of caravel can be accomplished by re-pulling `amancevice/caravel`at a specified caravel version or `latest` (see above for more on this). Remove the old container and re-deploy, making sure to use the correct environmental configuration. Finally, ensure the caravel database is migrated up to the head:
+
+```bash
+# Pull desired version
+docker pull amancevice/caravel
+
+# Remove the current container
+docker rm -f caravel
+
+# Deploy a new container ...
+docker run --detach --name caravel ...
+
+# Upgrade the DB
+docker exec caravel caravel db upgrade
+```
+
+
 ## Additional Configuration
 
 A custom configuration can be accomplished through mounting a Caravel config to `~caravel/caravel_config.py` in the container or by setting `ENV` variables:
@@ -70,7 +94,9 @@ A custom configuration can be accomplished through mounting a Caravel config to 
 * `CSRF_ENABLED`
 * `DEBUG`
 
-any other environment variable prefixed with `CARAVEL_` will also be passed to the caravel configuration (without the `CARAVEL_` prefix). See the [caravel configuration file](https://github.com/airbnb/caravel/blob/master/caravel/config.py) for a list of available configuration keys. For example:
+Additional environmental variables prefixed with `CARAVEL_` will also be passed to the caravel configuration (without the `CARAVEL_` prefix). See the [caravel configuration file](https://github.com/airbnb/caravel/blob/master/caravel/config.py) for a list of available configuration keys. 
+
+For example, the following command will deploy caravel with the [`LOG_LEVEL`](https://github.com/airbnb/caravel/blob/master/caravel/config.py) variable set in the caravel configuration:
 
 ```bash
 docker run --detach --name caravel \
@@ -78,5 +104,3 @@ docker run --detach --name caravel \
     --publish 8088:8088 \
     amancevice/caravel
 ```
-
-will set the [`LOG_LEVEL`](https://github.com/airbnb/caravel/blob/master/caravel/config.py) variable in the caravel configuration.
