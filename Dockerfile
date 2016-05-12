@@ -2,7 +2,7 @@ FROM ubuntu:14.04
 MAINTAINER amancevice@cargometrics.com
 
 # Setup
-RUN echo as of 2016-04-03 && \
+RUN echo as of 2016-05-10 && \
     apt-get update && \
     apt-get install -y build-essential libssl-dev libffi-dev python-dev python-pip
 
@@ -16,7 +16,7 @@ RUN apt-get install -y libmysqlclient-dev && pip install mysqlclient==1.3.7
 RUN apt-get build-dep -y psycopg2 && pip install psycopg2==2.6.1
 
 # Caravel
-RUN pip install caravel==0.8.9
+RUN pip install caravel==0.9.0
 
 # Default config
 ENV ROW_LIMIT=5000 \
