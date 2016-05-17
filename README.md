@@ -33,7 +33,7 @@ docker run --detach --name caravel \
     --env SECRET_KEY="mySUPERsecretKEY" \
     --env SQLALCHEMY_DATABASE_URI="sqlite:////home/caravel/caravel.db" \
     --publish 8088:8088 \
-    --volume ~/caravel/caravel.db:/home/caravel/caravel.db \
+    --volume ~/caravel/:/home/caravel/ \
     amancevice/caravel
 ```
 
