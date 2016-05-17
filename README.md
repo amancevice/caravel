@@ -3,6 +3,17 @@
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 
+## Run Demo
+
+Run the caravel demo by entering this command into your console:
+
+```bash
+docker run --rm --interactive --tty --publish 8088:8088 amancevice/caravel ./demo
+```
+
+You will be prompted to create an admin user. When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo.
+
+
 ## Versions
 
 This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.8.9` will fetch the image of this repository running caravel v0.8.9. As it is an automated build, commits to the master branch of this repository trigger a re-build of the `latest` tag, while tagging master triggers a versioned build. It is possible that the `latest` tag includes new deployment-specific features but will usually be in sync with the latest semantic version. Use either method to deploy caravel, being aware of the caveats with `latest`.
