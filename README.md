@@ -8,7 +8,7 @@ Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 Run the caravel demo by entering this command into your console:
 
 ```bash
-docker run --rm --interactive --tty --publish 8088:8088 amancevice/caravel ./demo
+docker run --rm --interactive --tty --publish 8088:8088 amancevice/caravel demo
 ```
 
 You will be prompted to create an admin user. When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo.
@@ -26,14 +26,14 @@ Determine where you will store Caravel's database; choose `SQLite`, `MySQL`, or 
 
 #### SQLite
 
-If Caravel's database is created using SQLite the db file should be mounted from the host machine. In this example we will store a SQLite DB on our host machine in `~/caravel/caravel.db` and mount the directory to `/home/caravel` in the container.
+If Caravel's database is created using SQLite the db file should be mounted from the host machine. In this example we will store a SQLite DB on our host machine in `~/caravel/caravel.db` and mount the directory to `/home/caravel/db` in the container.
 
 ```bash
 docker run --detach --name caravel \
     --env SECRET_KEY="mySUPERsecretKEY" \
-    --env SQLALCHEMY_DATABASE_URI="sqlite:////home/caravel/caravel.db" \
+    --env SQLALCHEMY_DATABASE_URI="sqlite:////home/caravel/db/caravel.db" \
     --publish 8088:8088 \
-    --volume ~/caravel:/home/caravel \
+    --volume ~/caravel:/home/caravel/db \
     amancevice/caravel
 ```
 
@@ -65,14 +65,7 @@ docker run --detach --name caravel \
 After starting the Caravel server, initialize the database with an admin user and Caravel tables:
 
 ```bash
-# Create an admin user
-docker exec -it caravel fabmanager create-admin --app caravel
-
-# Initialize the database
-docker exec caravel caravel db upgrade
-
-# Create default roles and permissions
-docker exec caravel caravel init
+docker exec -it caravel caravel-init
 ```
 
 

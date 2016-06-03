@@ -2,41 +2,42 @@ FROM ubuntu:14.04
 MAINTAINER amancevice@cargometrics.com
 
 # Setup
-RUN echo as of 2016-05-10 && \
+RUN echo as of 2016-06-03 && \
     apt-get update && \
-    apt-get install -y build-essential libssl-dev libffi-dev python-dev python-pip
+    apt-get install -y \
+        build-essential \
+        libssl-dev \
+        libffi-dev \
+        python-dev \
+        python-pip \
+        libmysqlclient-dev && \
+    apt-get build-dep -y psycopg2
 
-# Pandas
-RUN pip install pandas==0.18.0
-
-# MySQL
-RUN apt-get install -y libmysqlclient-dev && pip install mysqlclient==1.3.7
-
-# PostgreSQL
-RUN apt-get build-dep -y psycopg2 && pip install psycopg2==2.6.1
-
-# Redshift
-RUN pip install sqlalchemy-redshift==0.5.0
-
-# Caravel
-RUN pip install caravel==0.9.0
+# Python
+RUN pip install pip==8.1.2 \
+    pandas==0.18.0 \
+    mysqlclient==1.3.7 \
+    psycopg2==2.6.1 \
+    sqlalchemy-redshift==0.5.0 \
+    caravel==0.9.0
 
 # Default config
-ENV ROW_LIMIT=5000 \
-    WEBSERVER_THREADS=8 \
-    SECRET_KEY=\2\1thisismyscretkey\1\2\e\y\y\h \
-    SQLALCHEMY_DATABASE_URI=sqlite:////home/caravel/caravel.db \
-    CSRF_ENABLED=1 \
-    DEBUG=1 \
-    PYTHONPATH=/home/caravel/caravel_config.py:$PYTHONPATH
+ENV CSRF_ENABLED=1 \
+    DEBUG=0 \
+    PATH=$PATH:/home/caravel/bin \
+    PYTHONPATH=/home/caravel/caravel_config.py:$PYTHONPATH \
+    ROW_LIMIT=5000 \
+    SECRET_KEY='\2\1thisismyscretkey\1\2\e\y\y\h' \
+    SQLALCHEMY_DATABASE_URI=sqlite:////home/caravel/db/caravel.db \
+    WEBSERVER_THREADS=8
 
-EXPOSE 8088
-
+# Run as caravel user
 RUN useradd -b /home -m -U caravel
+COPY caravel /home/caravel
+RUN mkdir /home/caravel/db && chown -R caravel:caravel /home/caravel
+WORKDIR /home/caravel
 USER caravel
 
-WORKDIR /home/caravel
-
-COPY caravel /home/caravel
+EXPOSE 8088
 
 CMD ["caravel", "runserver"]
