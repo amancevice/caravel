@@ -7,11 +7,5 @@ docker run --detach --name caravel \
     --publish 8088:8088 \
     amancevice/caravel
 
-# Create an admin user
-docker exec -it caravel fabmanager create-admin --app caravel
-
-# Initialize the database
-docker exec caravel caravel db upgrade
-
-# Create default roles and permissions
-docker exec caravel caravel init
+# Set up caravel
+docker exec -it caravel caravel-init
