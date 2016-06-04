@@ -25,7 +25,7 @@ RUN pip install pip==8.1.2 \
 ENV CSRF_ENABLED=1 \
     DEBUG=0 \
     PATH=$PATH:/home/caravel/bin \
-    PYTHONPATH=/home/caravel/caravel_config.py:$PYTHONPATH \
+    PYTHONPATH=/home/caravel:$PYTHONPATH \
     ROW_LIMIT=5000 \
     SECRET_KEY='\2\1thisismyscretkey\1\2\e\y\y\h' \
     SQLALCHEMY_DATABASE_URI=sqlite:////home/caravel/db/caravel.db \
