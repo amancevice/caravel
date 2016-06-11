@@ -18,6 +18,8 @@ You will be prompted to create an admin user. When finished navigate to [http://
 
 This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.8.9` will fetch the image of this repository running caravel v0.8.9. As it is an automated build, commits to the master branch of this repository trigger a re-build of the `latest` tag, while tagging master triggers a versioned build. It is possible that the `latest` tag includes new deployment-specific features but will usually be in sync with the latest semantic version. Use either method to deploy caravel, being aware of the caveats with `latest`.
 
+Additionally, there is an experimental build based on alpine linux available at `amancevice/caravel:alpine`. It runs the latest version of caravel.
+
 
 ## Database Setup
 
