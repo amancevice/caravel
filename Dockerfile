@@ -15,11 +15,11 @@ RUN echo as of 2016-06-03 && \
 
 # Python
 RUN pip install pip==8.1.2 \
-    pandas==0.18.0 \
+    pandas==0.18.1 \
     mysqlclient==1.3.7 \
     psycopg2==2.6.1 \
     sqlalchemy-redshift==0.5.0 \
-    caravel==0.9.0
+    caravel==0.9.1
 
 # Default config
 ENV CSRF_ENABLED=1 \
