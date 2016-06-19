@@ -6,6 +6,7 @@ RUN echo as of 2016-06-03 && \
     apt-get update && \
     apt-get install -y \
         build-essential \
+        curl \
         libssl-dev \
         libffi-dev \
         python-dev \
@@ -39,5 +40,7 @@ WORKDIR /home/caravel
 USER caravel
 
 EXPOSE 8088
+
+HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 
 CMD ["caravel", "runserver"]
