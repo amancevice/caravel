@@ -1,26 +1,26 @@
-FROM ubuntu:14.04
-MAINTAINER amancevice@cargometrics.com
+FROM ubuntu:16.04
+MAINTAINER smallweirdnum@gmail.com
 
 # Setup
-RUN echo as of 2016-06-03 && \
+RUN echo as of 2016-06-29 && \
     apt-get update && \
     apt-get install -y \
         build-essential \
         curl \
         libssl-dev \
         libffi-dev \
-        python-dev \
-        python-pip \
+        python3-dev \
+        python3-pip \
         libmysqlclient-dev && \
     apt-get build-dep -y psycopg2
 
 # Python
-RUN pip install pip==8.1.2 \
-    pandas==0.18.1 \
-    mysqlclient==1.3.7 \
-    psycopg2==2.6.1 \
-    sqlalchemy-redshift==0.5.0 \
-    caravel==0.10.0
+RUN pip3 install \
+        pandas==0.18.1 \
+        mysqlclient==1.3.7 \
+        psycopg2==2.6.1 \
+        sqlalchemy-redshift==0.5.0 \
+        caravel==0.10.0
 
 # Default config
 ENV CSRF_ENABLED=1 \
