@@ -19,7 +19,7 @@ RUN pip install pip==8.1.2 \
     mysqlclient==1.3.7 \
     psycopg2==2.6.1 \
     sqlalchemy-redshift==0.5.0 \
-    caravel==0.9.1
+    caravel==0.10.0
 
 # Default config
 ENV CSRF_ENABLED=1 \
