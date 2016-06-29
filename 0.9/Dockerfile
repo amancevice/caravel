@@ -1,26 +1,19 @@
-FROM ubuntu:16.04
+FROM amancevice/pandas:0.18.1-python3
 MAINTAINER smallweirdnum@gmail.com
 
-# Setup
-RUN echo as of 2016-06-29 && \
-    apt-get update && \
-    apt-get install -y \
-        build-essential \
+# Install
+ENV CARAVEL_VERSION 0.9.1
+RUN apk add --no-cache \
         curl \
-        libssl-dev \
+        g++ \
         libffi-dev \
-        python3-dev \
-        python3-pip \
-        libmysqlclient-dev && \
-    apt-get build-dep -y psycopg2
-
-# Python
-RUN pip3 install \
-        pandas==0.18.1 \
+        mariadb-dev \
+        postgresql-dev && \
+    pip3 install \
+        caravel==$CARAVEL_VERSION \
         mysqlclient==1.3.7 \
         psycopg2==2.6.1 \
-        sqlalchemy-redshift==0.5.0 \
-        caravel==0.9.1
+        sqlalchemy-redshift==0.5.0
 
 # Default config
 ENV CSRF_ENABLED=1 \
@@ -35,7 +28,8 @@ ENV CSRF_ENABLED=1 \
 
 # Run as caravel user
 COPY caravel /home/caravel
-RUN useradd -b /home -U caravel && \
+RUN addgroup caravel && \
+    adduser -h /home/caravel -G caravel -D caravel && \
     mkdir /home/caravel/db && \
     chown -R caravel:caravel /home/caravel
 WORKDIR /home/caravel
