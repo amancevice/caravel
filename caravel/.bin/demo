@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Initialize Caravel
+caravel-init
+
+# Load some data to play with
+caravel load_examples

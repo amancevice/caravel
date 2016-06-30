@@ -3,22 +3,25 @@
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 
-## Run Demo
+## Demo
 
 Run the caravel demo by entering this command into your console:
 
 ```bash
-docker run --rm --interactive --tty --publish 8088:8088 amancevice/caravel demo
+docker run --name caravel -d -p 8088:8088 amancevice/caravel
+docker exec -it caravel demo
 ```
 
-You will be prompted to create an admin user. When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo.
+You will be prompted to set up an admin user. 
+
+When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo. 
+
+Log in with the credentials you just created.
 
 
 ## Versions
 
-This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.8.9` will fetch the image of this repository running caravel v0.8.9. As it is an automated build, commits to the master branch of this repository trigger a re-build of the `latest` tag, while tagging master triggers a versioned build. It is possible that the `latest` tag includes new deployment-specific features but will usually be in sync with the latest semantic version. Use either method to deploy caravel, being aware of the caveats with `latest`.
-
-Additionally, there is an experimental build based on alpine linux available at `amancevice/caravel:alpine`. It runs the latest version of caravel.
+This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.10.0` will fetch the image of this repository running caravel version `0.10.0`. As it is an automated build, commits to the master branch of this repository trigger a re-build of the `latest` tag, while tagging master triggers a versioned build. It is possible that the `latest` tag includes new deployment-specific features but will usually be in sync with the latest semantic version.
 
 
 ## Database Setup
@@ -64,9 +67,10 @@ docker run --detach --name caravel \
 
 ## Database Initialization
 
-After starting the Caravel server, initialize the database with an admin user and Caravel tables:
+After starting the Caravel server, initialize the database with an admin user and Caravel tables using the `caravel-init` helper script:
 
 ```bash
+docker run --detach --name caravel ... amancevice/caravel
 docker exec -it caravel caravel-init
 ```
 
@@ -80,13 +84,13 @@ Upgrading to a newer version of caravel can be accomplished by re-pulling `amanc
 docker pull amancevice/caravel
 
 # Remove the current container
-docker rm -f caravel
+docker rm -f caravel-old
 
 # Deploy a new container ...
-docker run --detach --name caravel ...
+docker run --detach --name caravel-new ...
 
 # Upgrade the DB
-docker exec caravel caravel db upgrade
+docker exec caravel-new db upgrade
 ```
 
 
