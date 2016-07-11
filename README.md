@@ -28,7 +28,7 @@ This repo is tagged in parallel with caravel. Pulling `amancevice/caravel:0.10.0
 
 ## Database Setup
 
-Determine where you will store Caravel's database; choose `SQLite`, `MySQL`, or `PostgreSQL`. Use the `ENV` variable `SQLALCHEMY_DATABASE_URI` to point caravel to the correct database. Be sure to set a `SECRET_KEY` when creating the container.
+Determine where you will store Caravel's database; choose `SQLite`, `MySQL`, `PostgreSQL`, or `Redshift`. Use the `ENV` variable `SQLALCHEMY_DATABASE_URI` to point caravel to the correct database. Be sure to set a `SECRET_KEY` when creating the container.
 
 
 #### SQLite
@@ -62,6 +62,17 @@ docker run --detach --name caravel \
 docker run --detach --name caravel \
     --env SECRET_KEY="mySUPERsecretKEY" \
     --env SQLALCHEMY_DATABASE_URI="postgresql://user:pass@host:port/db" \
+    --publish 8088:8088 \
+    amancevice/caravel
+```
+
+
+#### Redshift
+
+```bash
+docker run --detach --name caravel \
+    --env SECRET_KEY="mySUPERsecretKEY" \
+    --env SQLALCHEMY_DATABASE_URI="redshift+psycopg2://username@host.amazonaws.com:5439/db" \
     --publish 8088:8088 \
     amancevice/caravel
 ```
