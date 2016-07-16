@@ -1,5 +1,8 @@
 # Caravel
 
+[![stars](https://img.shields.io/docker/stars/amancevice/caravel.svg)](https://img.shields.io/docker/stars/amancevice/caravel.svg)
+[![pulls](https://img.shields.io/docker/pulls/amancevice/caravel.svg)](https://img.shields.io/docker/pulls/amancevice/caravel.svg)
+
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 As of version `0.10.0` this image is based on [Alpine Linux](https://alpinelinux.org/) and installed with [Python 3](https://docs.python.org/3/)
@@ -14,9 +17,9 @@ docker run --name caravel -d -p 8088:8088 amancevice/caravel
 docker exec -it caravel demo
 ```
 
-You will be prompted to set up an admin user. 
+You will be prompted to set up an admin user.
 
-When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo. 
+When finished navigate to [http://localhost:8088/](http://localhost:8088/) to see the demo.
 
 Log in with the credentials you just created.
 
@@ -117,7 +120,7 @@ A custom configuration can be accomplished through mounting a Caravel config to 
 * `CSRF_ENABLED`
 * `DEBUG`
 
-Additional environmental variables prefixed with `CARAVEL_` will also be passed to the caravel configuration (without the `CARAVEL_` prefix). See the [caravel configuration file](https://github.com/airbnb/caravel/blob/master/caravel/config.py) for a list of available configuration keys. 
+Additional environmental variables prefixed with `CARAVEL_` will also be passed to the caravel configuration (without the `CARAVEL_` prefix). See the [caravel configuration file](https://github.com/airbnb/caravel/blob/master/caravel/config.py) for a list of available configuration keys.
 
 For example, the following command will deploy caravel with the [`LOG_LEVEL`](https://github.com/airbnb/caravel/blob/master/caravel/config.py) variable set in the caravel configuration:
 
