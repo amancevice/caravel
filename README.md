@@ -1,8 +1,5 @@
 # Caravel
 
-[![stars](https://img.shields.io/docker/stars/amancevice/caravel.svg)](https://img.shields.io/docker/stars/amancevice/caravel.svg)
-[![pulls](https://img.shields.io/docker/pulls/amancevice/caravel.svg)](https://img.shields.io/docker/pulls/amancevice/caravel.svg)
-
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
 As of version `0.10.0` this image is based on [Alpine Linux](https://alpinelinux.org/) and installed with [Python 3](https://docs.python.org/3/)
