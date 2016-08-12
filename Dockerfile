@@ -28,9 +28,10 @@ RUN addgroup caravel && \
     adduser -h /home/caravel -G caravel -D caravel && \
     mkdir /home/caravel/db && \
     chown -R caravel:caravel /home/caravel
+USER caravel
 
 # Deploy
 EXPOSE 8088
-HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
+# HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 ENTRYPOINT ["caravel"]
 CMD ["runserver"]
