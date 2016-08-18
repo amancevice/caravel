@@ -32,6 +32,6 @@ USER caravel
 
 # Deploy
 EXPOSE 8088
-# HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
+HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 ENTRYPOINT ["caravel"]
 CMD ["runserver"]
