@@ -1,4 +1,4 @@
-FROM amancevice/pandas:0.18.1-python3
+FROM amancevice/pandas:0.18.1
 MAINTAINER smallweirdnum@gmail.com
 
 # Install
@@ -9,10 +9,11 @@ RUN apk add --no-cache \
         libffi-dev \
         mariadb-dev \
         postgresql-dev && \
-    pip3 install \
+    pip install \
         caravel==$CARAVEL_VERSION \
         mysqlclient==1.3.7 \
         psycopg2==2.6.1 \
+        redis==2.10.5 \
         sqlalchemy-redshift==0.5.0
 
 # Default config
