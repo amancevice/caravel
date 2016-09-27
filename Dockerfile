@@ -19,7 +19,7 @@ RUN apk add --no-cache \
 ENV LANG=C.UTF-8 \
     LC_ALL=C.UTF-8 \
     PATH=$PATH:/home/caravel/.bin \
-    PYTHONPATH=/home/caravel:$PYTHONPATH
+    PYTHONPATH=/home/caravel/caravel_config.py:$PYTHONPATH
 
 # Run as caravel user
 WORKDIR /home/caravel
