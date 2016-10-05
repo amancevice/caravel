@@ -1,3 +1,4 @@
+import json
 import os
 
 # ---------------------------------------------------------
@@ -27,6 +28,11 @@ MAPBOX_API_KEY = os.getenv("MAPBOX_API_KEY", "")
 
 # Whether to run the web server in debug mode or not
 DEBUG = os.getenv("DEBUG", "0") in ("True", "true", "1")
+
+try:
+    CACHE_CONFIG = json.loads(os.getenv("CACHE_CONFIG", "{}"))
+except ValueError:
+    CACHE_CONFIG = {}
 
 # Import all the env variables prefixed with "CARAVEL_"
 config_keys = [c for c in os.environ if c.startswith("CARAVEL_")]
