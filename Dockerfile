@@ -2,17 +2,18 @@ FROM amancevice/pandas:0.18.1-python3
 MAINTAINER smallweirdnum@gmail.com
 
 # Install
-ENV CARAVEL_VERSION 0.10.0
+ENV CARAVEL_VERSION 0.11.0
 RUN apk add --no-cache \
         curl \
-        g++ \
         libffi-dev \
+        cyrus-sasl-dev \
         mariadb-dev \
         postgresql-dev && \
     pip3 install \
         caravel==$CARAVEL_VERSION \
         mysqlclient==1.3.7 \
         psycopg2==2.6.1 \
+        redis==2.10.5 \
         sqlalchemy-redshift==0.5.0
 
 # Default config
