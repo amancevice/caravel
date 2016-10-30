@@ -1,18 +1,23 @@
-FROM amancevice/pandas:0.18.1-python3
+FROM debian:jessie
 MAINTAINER smallweirdnum@gmail.com
 
 # Install
 ENV CARAVEL_VERSION 0.12.0
-RUN apk add --no-cache \
-        curl \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+        build-essential \
+        libssl-dev \
         libffi-dev \
-        cyrus-sasl-dev \
-        mariadb-dev \
-        postgresql-dev && \
+        python3-dev \
+        python3-pip \
+        libsasl2-dev \
+        libldap2-dev \
+        python-mysqldb \
+        curl && \
+    pip3 install cryptography==1.4 && \
     pip3 install \
         caravel==$CARAVEL_VERSION \
         mysqlclient==1.3.7 \
-        psycopg2==2.6.1 \
         redis==2.10.5 \
         sqlalchemy-redshift==0.5.0
 
@@ -25,9 +30,8 @@ ENV LANG=C.UTF-8 \
 # Run as caravel user
 WORKDIR /home/caravel
 COPY caravel .
-RUN addgroup caravel && \
-    adduser -h /home/caravel -G caravel -D caravel && \
-    mkdir /home/caravel/db && \
+RUN groupadd caravel && \
+    useradd -g caravel caravel && \
     chown -R caravel:caravel /home/caravel
 USER caravel
 

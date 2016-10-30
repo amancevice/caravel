@@ -2,7 +2,7 @@
 
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
 
-As of version `0.10.0` this image is based on [Alpine Linux](https://alpinelinux.org/) and installed with [Python 3](https://docs.python.org/3/)
+As of version `0.12.0` this image is based on [`debian:jessie`](https://hub.docker.com/_/debian/) and installed with [Python 3](https://docs.python.org/3/)
 
 
 ## Demo
