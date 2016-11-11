@@ -2,7 +2,7 @@
 
 AirBnB renamed this project `superset`. As such this project is effectively dead. 
 
-Find the new project at https://github.com/amancevice/superset
+Find the new project at [amancevice/superset](https://github.com/amancevice/superset)
 
 # Caravel
 
