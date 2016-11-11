@@ -1,3 +1,9 @@
+**NOTE** 
+
+AirBnB renamed this project `superset`. As such this project is effectively dead. 
+
+Find the new project at https://github.com/amancevice/superset
+
 # Caravel
 
 Docker image for [AirBnB's Caravel](https://github.com/airbnb/caravel).
