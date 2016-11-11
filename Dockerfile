@@ -2,7 +2,7 @@ FROM amancevice/pandas:0.18.1-python3
 MAINTAINER smallweirdnum@gmail.com
 
 # Install
-ENV CARAVEL_VERSION 0.12.0
+ENV CARAVEL_VERSION 0.13.1
 RUN apk add --no-cache \
         curl \
         libffi-dev \
